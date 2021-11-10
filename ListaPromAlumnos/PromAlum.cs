@@ -14,7 +14,7 @@ namespace ListaPromAlumnos
         public DataTable DaTa { get; set; } = new DataTable();
 
         public PromAlum()
-        {/// inicializar valores de la tabla wachin
+        {
             DaTa.TableName = "Lista de Alumnos";
             DaTa.Columns.Add("Nombre");
             DaTa.Columns.Add("Apellido");

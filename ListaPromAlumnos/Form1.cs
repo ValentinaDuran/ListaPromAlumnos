@@ -40,6 +40,7 @@ namespace ListaPromAlumnos
             Alumno.Nombre = txt1.Text;
             Alumno.Apellido = txt2.Text;
             PromAlum.Cargar(Alumno);
+
             txt1.Text = "";
             txt2.Text = "";
             txtNot1.Text = "";
