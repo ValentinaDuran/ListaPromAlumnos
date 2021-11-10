@@ -13,6 +13,7 @@ namespace ListaPromAlumnos
 
         public DataTable DaTa { get; set; } = new DataTable();
 
+        //Constructor de DaTa
         public PromAlum()
         {
             DaTa.TableName = "Lista de Alumnos";
@@ -24,6 +25,7 @@ namespace ListaPromAlumnos
             DaTa.Columns.Add("Promedio");
             LeerDaTa_Archivo();
         }
+        //Método para que lea el archivo
         public void LeerDaTa_Archivo()
         {
             if (System.IO.File.Exists("Prom.xml"))
@@ -33,7 +35,8 @@ namespace ListaPromAlumnos
                
             }
         }
-       
+
+       //Método para cargar
         public void Cargar (Alumno alumno) 
         {
            
