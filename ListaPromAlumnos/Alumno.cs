@@ -14,13 +14,11 @@ namespace ListaPromAlumnos
         public string Apellido { get; set; }
 
         public int nota1 { get; set; }
+        public int nota2 { get; set; }
+        public int nota3 { get; set; }
+        public float promedio { get; set; }
 
         //
-        public string NombreCompleto()
-        {
-            return Nombre + Apellido;
-        }
-
        
     }
     

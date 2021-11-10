@@ -9,50 +9,68 @@ namespace ListaPromAlumnos
 {
     public class PromAlum
     {
-        public Alumno[] alumnos { get; set; }
+        public Alumno[] alumno { get; set; }
 
         public DataTable DaTa { get; set; } = new DataTable();
 
         public PromAlum()
         {/// inicializar valores de la tabla wachin
             DaTa.TableName = "Lista de Alumnos";
-
+            DaTa.Columns.Add("Nombre");
+            DaTa.Columns.Add("Apellido");
+            DaTa.Columns.Add("1° Nota");
+            DaTa.Columns.Add("2° Nota");
+            DaTa.Columns.Add("3° Nota");
+            DaTa.Columns.Add("Promedio");
+            LeerDaTa_Archivo();
+        }
+        public void LeerDaTa_Archivo()
+        {
+            if (System.IO.File.Exists("Prom.xml"))
+            {
+                DaTa.Clear();
+                DaTa.ReadXml("Prom.xml");
+               
+            }
+        }
+       
+        public void Cargar (Alumno alumno) 
+        {
+           
+            if (alumno.Nombre!="" &&
+                alumno.Apellido!= ""&& 
+                alumno.nota1!=0 &&
+                alumno.nota2!=0 &&
+                alumno.nota3!=0 &&
+                alumno.promedio!=0)
+            {
+                DaTa.Rows.Add();
+                int NuevoAlumno = DaTa.Rows.Count - 1;
+                DaTa.Rows[NuevoAlumno]["Nombre"] = alumno.Nombre;
+                DaTa.Rows[NuevoAlumno]["Apellido"] = alumno.Apellido;
+                DaTa.Rows[NuevoAlumno]["1° Nota"] = alumno.nota1;
+                DaTa.Rows[NuevoAlumno]["2° Nota"] = alumno.nota2;
+                DaTa.Rows[NuevoAlumno]["3° Nota"] = alumno.nota3;
+                DaTa.Rows[NuevoAlumno]["Promedio"] = alumno.promedio;
+                DaTa.WriteXml("Prom.xml");
+            }
         }
 
         //Botón de calcular
-        public class Calcular
+        public int CalcularPromedio (Alumno alumno)
         {
+            return (alumno.nota1 + alumno.nota2 + alumno.nota3) / 3;
 
         }
 
-        // decimal num1, num2, num3;
-        // decimal promedio;
-        //num1 = System.Convert.ToDecimal(txtNot1.Text);
-        // num2 = System.Convert.ToDecimal(txtNot2.Text);
-        //num3 = System.Convert.ToDecimal(txtNot3.Text);
-
-        //promedio = (num1 + num2 + num3)/3;
-        //lblPromedio.Text = System.Convert.ToString(promedio);
-        //contador += 1;
-
-
-        //public PromAlum()
-        //{
-            /// inicializar valores de la tabla wachin
-        //}
-
-        //Botón de cargar
-        public class Cargar { }
         //Botón de borrar
-
-        //redimensionar
-
-
-        public void calculatePromedio(Alumno AlumnoNotas)
+        public void Borrar() 
         {
-            /// CALCULAR PROMEDIO
-
+            DaTa.Rows.Clear();
+            DaTa.WriteXml("Prom.xml");
         }
+
+
 
     }
 }
